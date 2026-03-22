@@ -861,18 +861,110 @@
 }
 
 @media (max-width: 860px) {
+  .app-shell {
+    height: auto;
+    min-height: 100svh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .app-header {
+    padding: 8px 10px 6px;
+  }
+
   .header-inner {
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
+    padding: 6px 2px;
+  }
+
+  .brand-wrap {
+    min-width: 0;
+  }
+
+  .brand-title {
+    font-size: clamp(17px, 4.6vw, 23px);
+  }
+
+  .header-center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .game-rules-btn {
+    width: min(210px, 82vw);
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    flex-wrap: nowrap;
   }
 
   .boxes-wrap {
     grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 4px;
   }
 
   .home-page {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
     justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 12px 14px;
+  }
+
+  .move-box {
+    height: auto;
+    min-height: 250px;
+    max-height: none;
+  }
+
+  .computer-visual,
+  .webcam-slot {
+    min-height: 210px;
+  }
+
+  .countdown-number,
+  .ready-status,
+  .camera-status,
+  .no-hand-status {
+    left: 50%;
+  }
+
+  .disclaimer-ticker {
+    width: 100%;
+    padding: 8px 10px;
+  }
+
+  .disclaimer-track {
+    font-size: 13px;
+  }
+
+  .auth-shell {
+    align-items: flex-start;
+    padding: 14px 12px;
+  }
+
+  .auth-card {
+    max-width: 100%;
+    padding: 20px 16px;
+  }
+
+  .docs-backdrop {
+    padding: 10px;
+  }
+
+  .docs-modal {
+    width: 100%;
+    max-height: calc(100svh - 20px);
+    padding: 12px;
   }
 
   .footer-content {
@@ -882,5 +974,36 @@
   .footer-col {
     align-items: flex-start;
     text-align: left;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-logo {
+    width: 48px;
+    height: 30px;
+  }
+
+  .header-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .game-rules-btn {
+    width: min(190px, 84vw);
+    height: 32px;
+  }
+
+  .computer-visual,
+  .webcam-slot {
+    min-height: 185px;
+  }
+
+  .move-box h2 {
+    font-size: 20px;
+  }
+
+  .box-move-text {
+    font-size: 14px;
   }
 }
