@@ -1,0 +1,52 @@
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules/
+backend/node_modules/
+my-react-app/node_modules/
+
+# Environment files (single root rule for both apps)
+.env
+.env.*
+backend/.env
+backend/.env.*
+my-react-app/.env
+my-react-app/.env.*
+!.env.example
+
+# Build outputs
+dist/
+dist-ssr/
+backend/dist/
+my-react-app/dist/
+
+# Test and cache artifacts
+coverage/
+backend/coverage/
+my-react-app/coverage/
+.cache/
+.eslintcache
+my-react-app/.vite/
+*.tsbuildinfo
+
+# Local-only files
+*.local
+
+# Editor and OS files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
