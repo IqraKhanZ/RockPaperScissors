@@ -29,6 +29,19 @@ app.get('/ping', (_req, res) => {
 	return res.status(200).send('PONG');
 });
 
+app.use(async (_req, res, next) => {
+	try {
+		await connectDatabase();
+		return next();
+	} catch (error) {
+		console.error('Database connection error:', error.message);
+		return res.status(500).json({
+			success: false,
+			message: 'Database connection failed. Please try again.'
+		});
+	}
+});
+
 app.use('/auth', AuthRoutes);
 app.use('/user', UserRoutes);
 
@@ -41,7 +54,9 @@ app.get('/auth/me', ensureAuthenticated, (req, res) => {
 
 const startServer = async () => {
 	try {
-		await connectDatabase();
+		if (!process.env.VERCEL) {
+			await connectDatabase();
+		}
 		if (!process.env.VERCEL) {
 			app.listen(PORT, () => {
 				console.log(`Backend server running on port ${PORT}`);
