@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { handleError, handleSuccess } from '../utils'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://rock-paper-scissors-backend.vercel.app'
 
 function ForgotPassword() {
 	const [email, setEmail] = useState('')

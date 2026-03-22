@@ -14,7 +14,7 @@ import VerifyEmail from './componenets/verifyemail.jsx'
 import VerifyOtp from './componenets/verifyotp.jsx'
 import './App.css'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://rock-paper-scissors-backend.vercel.app'
 
 function App() {
   const [theme, setTheme] = useState('dark')

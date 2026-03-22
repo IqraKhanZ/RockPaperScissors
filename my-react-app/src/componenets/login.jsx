@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import { handleError, handleSuccess } from '../utils'
 import googleLogo from '../assets/googleLogo.png'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://rock-paper-scissors-backend.vercel.app'
 
 function Login() {
 	const [formData, setFormData] = useState({
