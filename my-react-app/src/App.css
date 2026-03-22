@@ -383,12 +383,50 @@
   position: relative;
   border: 1.5px solid transparent;
   border-radius: 16px;
+  .move-box.user-box {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .move-box.user-box .box-move-text {
+    font-size: 14px;
+  }
   height: clamp(300px, 44vh, 410px);
   padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .controls .action-btn {
+    flex: 1 1 0;
+    min-width: 108px;
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+
+  .profile-dropdown {
+    right: 0;
+    min-width: 168px;
+  }
+
+  .docs-section {
+    margin-bottom: 8px;
+  }
+
+  .docs-subtitle {
+    margin-bottom: 6px;
+  }
+
+  .docs-list li {
+    margin-left: 2px;
+  }
+
+  .countdown-pill {
+    top: 47%;
   gap: 14px;
   background:
     linear-gradient(var(--panel-bg), var(--panel-bg)) padding-box,
@@ -997,6 +1035,28 @@
   .computer-visual,
   .webcam-slot {
     min-height: 185px;
+  }
+  .move-box.user-box .webcam-slot,
+  .move-box.user-box .webcam-media {
+    min-height: 165px;
+  }
+
+  .move-box.user-box .webcam-media video {
+    object-position: center 42%;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls .action-btn {
+    width: 100%;
+  }
+
+  .docs-list {
+    font-size: 13px;
+    line-height: 1.4;
   }
 
   .move-box h2 {
