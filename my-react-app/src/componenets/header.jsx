@@ -38,6 +38,19 @@ function Header({ theme, onToggleTheme, onLogout, currentUser }) {
           <img src={logo} alt="Game logo" className="brand-logo" />
           <h1 className="brand-title">Rock Paper Scissors</h1>
         </div>
+
+        <div className="header-center">
+          <button
+            className="game-rules-btn"
+            type="button"
+            onClick={handleOpenDocs}
+            aria-label="Game Rules"
+            title="Game Rules"
+          >
+            Game Rules
+          </button>
+        </div>
+
         <div className="header-actions">
           <button className="header-btn" type="button" onClick={onToggleTheme} aria-label="Toggle theme" title={theme === 'dark' ? 'Light Mode' : 'Dark Mode'}>
             {theme === 'dark' ? '☀' : '☾'}
@@ -69,16 +82,6 @@ function Header({ theme, onToggleTheme, onLogout, currentUser }) {
               </div>
             )}
           </div>
-
-          <button
-            className="header-btn docs-btn"
-            type="button"
-            onClick={handleOpenDocs}
-            aria-label="Documentation"
-            title="How to play"
-          >
-            i
-          </button>
         </div>
       </div>
 
@@ -86,7 +89,7 @@ function Header({ theme, onToggleTheme, onLogout, currentUser }) {
         <div className="docs-backdrop" onClick={() => setIsDocsOpen(false)} role="presentation">
           <div className="docs-modal" role="dialog" aria-modal="true" aria-label="Game documentation" onClick={(event) => event.stopPropagation()}>
             <div className="docs-modal-header">
-              <h2>Quick Game Guide</h2>
+              <h2>🎮 Quick Game Guide</h2>
               <button className="docs-close-btn" type="button" onClick={() => setIsDocsOpen(false)} aria-label="Close documentation">
                 ×
               </button>
@@ -94,37 +97,47 @@ function Header({ theme, onToggleTheme, onLogout, currentUser }) {
 
             <p className="docs-lead">Welcome! Before you start playing, please take a moment to review these instructions for the best experience:</p>
 
-            <h3 className="docs-subtitle">📷 Camera &amp; Setup</h3>
-            <ul className="docs-list">
-              <li>Ensure your camera permission is <strong>allowed</strong> when prompted. The game will not function without it.</li>
-              <li>If the camera does not start on the first attempt, click <strong>Open Camera</strong> again.</li>
-            </ul>
+            <div className="docs-section">
+              <h3 className="docs-subtitle">📷 Camera &amp; Setup</h3>
+              <ul className="docs-list">
+                <li>Ensure your camera permission is <strong>allowed</strong> when prompted. The game will not function without it.</li>
+                <li>If the camera does not start on the first attempt, click <strong>Open Camera</strong> again.</li>
+              </ul>
+            </div>
 
-            <h3 className="docs-subtitle">✋ Hand Positioning</h3>
-            <ul className="docs-list">
-              <li>Keep your hand <strong>clearly visible within the frame</strong> at all times.</li>
-              <li>Make sure your hand is well-lit and not blurred for accurate gesture detection.</li>
-            </ul>
+            <div className="docs-section">
+              <h3 className="docs-subtitle">✋ Hand Positioning</h3>
+              <ul className="docs-list">
+                <li>Keep your hand <strong>clearly visible within the frame</strong> at all times.</li>
+                <li>Make sure your hand is well-lit and not blurred for accurate gesture detection.</li>
+              </ul>
+            </div>
 
-            <h3 className="docs-subtitle">🪨📄✂️ Supported Gestures</h3>
-            <ul className="docs-list">
-              <li>The system recognizes only <strong>Rock</strong>, <strong>Paper</strong>, and <strong>Scissors</strong>.</li>
-              <li>Any other gesture may result in <strong>No Hand Detected</strong>.</li>
-            </ul>
+            <div className="docs-section">
+              <h3 className="docs-subtitle">🪨📄✂️ Supported Gestures</h3>
+              <ul className="docs-list">
+                <li>The system recognizes only <strong>Rock</strong>, <strong>Paper</strong>, and <strong>Scissors</strong>.</li>
+                <li>Any other gesture may result in <strong>No Hand Detected</strong>.</li>
+              </ul>
+            </div>
 
-            <h3 className="docs-subtitle">▶️ Starting the Game</h3>
-            <ul className="docs-list">
-              <li>First, position your hand properly inside the frame.</li>
-              <li>Then click <strong>Play</strong> to begin.</li>
-              <li>Starting without showing your hand may cause detection issues.</li>
-            </ul>
+            <div className="docs-section">
+              <h3 className="docs-subtitle">▶️ Starting the Game</h3>
+              <ul className="docs-list">
+                <li>First, position your hand properly inside the frame.</li>
+                <li>Then click <strong>Play</strong> to begin.</li>
+                <li>Starting without showing your hand may cause detection issues.</li>
+              </ul>
+            </div>
 
-            <h3 className="docs-subtitle">⚠️ Notes &amp; Feedback</h3>
-            <ul className="docs-list">
-              <li>This application is currently in the <strong>testing phase</strong>.</li>
-              <li>Minor glitches or detection errors may occur.</li>
-              <li>Your feedback is valuable—please report any issues to help us improve the experience.</li>
-            </ul>
+            <div className="docs-section">
+              <h3 className="docs-subtitle">⚠️ Notes &amp; Feedback</h3>
+              <ul className="docs-list">
+                <li>This application is currently in the <strong>testing phase</strong>.</li>
+                <li>Minor glitches or detection errors may occur.</li>
+                <li>Your feedback is valuable—please report any issues to help us improve the experience.</li>
+              </ul>
+            </div>
 
             <p className="docs-footnote">✨ Tip: For best results, play in a well-lit environment with a plain background.</p>
           </div>
