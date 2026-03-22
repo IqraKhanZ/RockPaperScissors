@@ -156,6 +156,34 @@ function Home({ currentUser }) {
 		}, 700)
 	}
 
+	const handleCloseCamera = async () => {
+		if (countdownIntervalRef.current) {
+			clearInterval(countdownIntervalRef.current)
+			countdownIntervalRef.current = null
+		}
+
+		if (countdownStartDelayRef.current) {
+			clearTimeout(countdownStartDelayRef.current)
+			countdownStartDelayRef.current = null
+		}
+
+		if (webcamStopRef.current) {
+			await Promise.resolve(webcamStopRef.current())
+			webcamStopRef.current = null
+		}
+
+		latestDetectedMoveRef.current = null
+		setIsCameraOpen(false)
+		setCountdown(null)
+		setComputerMove(null)
+		setUserMove(null)
+		setResult(null)
+		setTopStatus('Camera Closed')
+		setTimeout(() => {
+			setTopStatus('')
+		}, 900)
+	}
+
 	const computerMoveImage = computerMove ? getMoveImage(computerMove) : null
 
 	const isDraw = result === "It's a Draw"
@@ -219,6 +247,9 @@ function Home({ currentUser }) {
 			<div className="controls">
 				<button className="action-btn" onClick={handleStart}>
 					Open Camera
+				</button>
+				<button className="action-btn" onClick={handleCloseCamera} disabled={!isCameraOpen}>
+					Close Camera
 				</button>
 				<button className="action-btn" onClick={handlePlay} disabled={!isCameraOpen}>
 					Play
