@@ -954,10 +954,12 @@
   .home-page {
     height: auto;
     min-height: 0;
-    overflow: visible;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
     gap: 10px;
-    padding: 6px 10px 12px;
+    padding: 6px 10px 86px;
   }
 
   .move-box {
@@ -992,6 +994,24 @@
 
   .disclaimer-track {
     font-size: 12px;
+  }
+
+  .controls {
+    position: sticky;
+    bottom: 8px;
+    z-index: 16;
+    width: min(560px, 100%);
+    margin: 2px auto 0;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    background: linear-gradient(160deg, rgba(8, 21, 48, 0.94), rgba(10, 27, 61, 0.92));
+    box-shadow: 0 10px 22px rgba(4, 12, 30, 0.4);
+    gap: 8px;
+  }
+
+  [data-theme='light'] .controls {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(236, 246, 255, 0.95));
   }
 
   .auth-shell {
@@ -1064,6 +1084,8 @@
   .controls {
     flex-direction: column;
     align-items: stretch;
+    bottom: 6px;
+    padding: 7px;
   }
 
   .controls .action-btn {
