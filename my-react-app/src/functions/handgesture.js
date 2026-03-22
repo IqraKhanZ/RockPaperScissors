@@ -1,5 +1,5 @@
-import '@mediapipe/camera_utils'
-import '@mediapipe/hands'
+import '@mediapipe/camera_utils/camera_utils.js'
+import '@mediapipe/hands/hands.js'
 
 const HAND_CONNECTIONS = [
 	[0, 1], [1, 2], [2, 3], [3, 4],
@@ -212,8 +212,8 @@ export async function startWebcamCapture(options = {}) {
 			return
 		}
 
-		const HandsConstructor = window.Hands
-		const CameraConstructor = window.Camera
+		const HandsConstructor = globalThis.Hands
+		const CameraConstructor = globalThis.Camera
 
 		if (!HandsConstructor || !CameraConstructor) {
 			throw new Error('MediaPipe libraries failed to load')
