@@ -904,6 +904,8 @@
     min-height: 100svh;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
   }
 
   .app-header {
@@ -945,8 +947,8 @@
 
   .boxes-wrap {
     grid-template-columns: 1fr;
-    gap: 10px;
-    margin-top: 4px;
+    gap: 8px;
+    margin-top: 2px;
   }
 
   .home-page {
@@ -954,19 +956,26 @@
     min-height: 0;
     overflow: visible;
     justify-content: flex-start;
-    gap: 12px;
-    padding: 8px 12px 14px;
+    gap: 10px;
+    padding: 6px 10px 12px;
   }
 
   .move-box {
     height: auto;
-    min-height: 250px;
+    min-height: clamp(205px, 30vh, 245px);
     max-height: none;
+    gap: 10px;
+    padding: 10px;
   }
 
   .computer-visual,
   .webcam-slot {
-    min-height: 210px;
+    min-height: 145px;
+  }
+
+  .webcam-media,
+  .computer-visual {
+    border-radius: 10px;
   }
 
   .countdown-number,
@@ -982,7 +991,7 @@
   }
 
   .disclaimer-track {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .auth-shell {
@@ -1034,11 +1043,18 @@
 
   .computer-visual,
   .webcam-slot {
-    min-height: 185px;
+    min-height: 130px;
   }
+
+  .move-box {
+    min-height: 180px;
+    padding: 8px;
+    gap: 8px;
+  }
+
   .move-box.user-box .webcam-slot,
   .move-box.user-box .webcam-media {
-    min-height: 165px;
+    min-height: 120px;
   }
 
   .move-box.user-box .webcam-media video {
@@ -1060,10 +1076,10 @@
   }
 
   .move-box h2 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .box-move-text {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
