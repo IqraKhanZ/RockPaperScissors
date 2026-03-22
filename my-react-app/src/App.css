@@ -905,7 +905,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    overscroll-behavior-y: auto;
   }
 
   .app-header {
@@ -954,12 +954,10 @@
   .home-page {
     height: auto;
     min-height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    overflow: visible;
     justify-content: flex-start;
     gap: 10px;
-    padding: 6px 10px 86px;
+    padding: 6px 10px 16px;
   }
 
   .move-box {
@@ -997,21 +995,14 @@
   }
 
   .controls {
-    position: sticky;
-    bottom: 8px;
-    z-index: 16;
-    width: min(560px, 100%);
-    margin: 2px auto 0;
-    padding: 8px;
-    border-radius: 12px;
-    border: 1px solid var(--border-soft);
-    background: linear-gradient(160deg, rgba(8, 21, 48, 0.94), rgba(10, 27, 61, 0.92));
-    box-shadow: 0 10px 22px rgba(4, 12, 30, 0.4);
+    position: static;
+    width: 100%;
+    margin: 6px auto 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
     gap: 8px;
-  }
-
-  [data-theme='light'] .controls {
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(236, 246, 255, 0.95));
   }
 
   .auth-shell {
