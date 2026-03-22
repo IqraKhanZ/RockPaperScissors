@@ -1,6 +1,3 @@
-import '@mediapipe/camera_utils/camera_utils.js'
-import '@mediapipe/hands/hands.js'
-
 const HAND_CONNECTIONS = [
 	[0, 1], [1, 2], [2, 3], [3, 4],
 	[0, 5], [5, 6], [6, 7], [7, 8],
@@ -17,6 +14,73 @@ const FINGER_COLORS = {
 	ring: '#f472b6',
 	pinky: '#a78bfa',
 	palm: '#22d3ee',
+}
+
+let mediaPipeLoadPromise = null
+
+function loadScript(src) {
+	return new Promise((resolve, reject) => {
+		const existing = document.querySelector(`script[data-mediapipe-src="${src}"]`)
+		if (existing) {
+			if (existing.dataset.loaded === 'true') {
+				resolve()
+				return
+			}
+
+			existing.addEventListener('load', () => resolve(), { once: true })
+			existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true })
+			return
+		}
+
+		const script = document.createElement('script')
+		script.src = src
+		script.async = true
+		script.crossOrigin = 'anonymous'
+		script.dataset.mediapipeSrc = src
+		script.onload = () => {
+			script.dataset.loaded = 'true'
+			resolve()
+		}
+		script.onerror = () => reject(new Error(`Failed to load ${src}`))
+		document.head.appendChild(script)
+	})
+}
+
+async function loadWithFallback(primaryUrl, fallbackUrl) {
+	try {
+		await loadScript(primaryUrl)
+	} catch (_primaryError) {
+		await loadScript(fallbackUrl)
+	}
+}
+
+async function ensureMediaPipeLoaded() {
+	if (globalThis.Hands && globalThis.Camera) {
+		return
+	}
+
+	if (!mediaPipeLoadPromise) {
+		mediaPipeLoadPromise = (async () => {
+			await loadWithFallback(
+				'https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js',
+				'https://unpkg.com/@mediapipe/camera_utils/camera_utils.js',
+			)
+
+			await loadWithFallback(
+				'https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js',
+				'https://unpkg.com/@mediapipe/hands/hands.js',
+			)
+		})().catch((error) => {
+			mediaPipeLoadPromise = null
+			throw error
+		})
+	}
+
+	await mediaPipeLoadPromise
+
+	if (!globalThis.Hands || !globalThis.Camera) {
+		throw new Error('MediaPipe libraries failed to load')
+	}
 }
 
 function getConnectionColor(fromIndex, toIndex) {
@@ -211,6 +275,8 @@ export async function startWebcamCapture(options = {}) {
 		if (detectionRunning) {
 			return
 		}
+
+		await ensureMediaPipeLoaded()
 
 		const HandsConstructor = globalThis.Hands
 		const CameraConstructor = globalThis.Camera
