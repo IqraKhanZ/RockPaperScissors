@@ -101,7 +101,7 @@ Then open: `http://localhost:5173`
 
 ## Live demo
 
-You can test the website here: **[Add live link here]**
+You can test the website here: **https://rock-paper-scissors-frontend-theta.vercel.app/**
 
 > **Note:** No videos are recorded, stored, or uploaded by this app. Camera access is used only for live hand-gesture detection during gameplay.
 

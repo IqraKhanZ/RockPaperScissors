@@ -19,7 +19,6 @@ function Home({ currentUser }) {
 	const [userMove, setUserMove] = useState(null)
 	const [result, setResult] = useState(null)
 	const [isCameraOpen, setIsCameraOpen] = useState(false)
-	const [userGestureMessage, setUserGestureMessage] = useState('')
 
 	useEffect(() => {
 		return () => {
@@ -49,7 +48,6 @@ function Home({ currentUser }) {
 				height: 180,
 				onMoveDetected: (move) => {
 					latestDetectedMoveRef.current = move
-					setUserGestureMessage(move ? '' : 'No hand detected')
 				},
 			})
 
@@ -91,7 +89,6 @@ function Home({ currentUser }) {
 		}
 
 		if (!latestDetectedMoveRef.current) {
-			setUserGestureMessage('No hand detected')
 			setTopStatus('No hand detected')
 			setTimeout(() => {
 				setTopStatus('')
@@ -103,7 +100,6 @@ function Home({ currentUser }) {
 		setComputerMove(null)
 		setUserMove(null)
 		setResult(null)
-		setUserGestureMessage('')
 		setCountdown(null)
 		setTopStatus('Ready to Play')
 
@@ -120,7 +116,10 @@ function Home({ currentUser }) {
 					setComputerMove(null)
 					setUserMove(null)
 					setResult(null)
-					setUserGestureMessage('No hand detected')
+					setTopStatus('No hand detected')
+					setTimeout(() => {
+						setTopStatus('')
+					}, 1200)
 					return
 				}
 
@@ -141,7 +140,10 @@ function Home({ currentUser }) {
 					setComputerMove(null)
 					setUserMove(null)
 					setResult(null)
-					setUserGestureMessage('No hand detected')
+					setTopStatus('No hand detected')
+					setTimeout(() => {
+						setTopStatus('')
+					}, 1200)
 					return
 				}
 
@@ -150,7 +152,6 @@ function Home({ currentUser }) {
 
 				const finalResult = determineWinner(detectedUserMove, computerSelectedMove)
 				setResult(finalResult)
-				setUserGestureMessage('')
 			}, 1000)
 		}, 700)
 	}
@@ -171,7 +172,7 @@ function Home({ currentUser }) {
 
 			<div className="boxes-wrap">
 				{(topStatus || countdown !== null) && (
-					<div className={`countdown-pill ${countdown !== null ? 'countdown-number' : topStatus === 'Camera Opened' ? 'camera-status' : 'ready-status'}`}>
+					<div className={`countdown-pill ${countdown !== null ? 'countdown-number' : topStatus === 'Camera Opened' ? 'camera-status' : topStatus === 'No hand detected' ? 'no-hand-status' : 'ready-status'}`}>
 						{countdown !== null ? countdown : topStatus}
 					</div>
 				)}
@@ -205,9 +206,6 @@ function Home({ currentUser }) {
 						<p className="box-move-text">Move: {formatMove(userMove)}</p>
 						<div className="webcam-slot">
 							<div className="webcam-media" ref={webcamContainerRef} />
-							{userGestureMessage && (
-								<p className="no-gesture-overlay">{userGestureMessage}</p>
-							)}
 							{userResultLabel && (
 								<p className={`box-result ${userResultLabel === 'Won' ? 'won' : 'lost'}`}>
 									{userResultLabel}
