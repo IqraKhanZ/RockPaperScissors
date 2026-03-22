@@ -325,11 +325,19 @@ export async function startWebcamCapture(options = {}) {
 			const landmarks = allHands[0]
 
 			if (!landmarks) {
+				latestMove = null
+				if (onMoveDetected) {
+					onMoveDetected(null)
+				}
 				return
 			}
 
 			const detectedMove = detectMoveFromLandmarks(landmarks)
 			if (!detectedMove) {
+				latestMove = null
+				if (onMoveDetected) {
+					onMoveDetected(null)
+				}
 				return
 			}
 

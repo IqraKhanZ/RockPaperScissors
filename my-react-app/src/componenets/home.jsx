@@ -49,6 +49,7 @@ function Home({ currentUser }) {
 				height: 180,
 				onMoveDetected: (move) => {
 					latestDetectedMoveRef.current = move
+					setUserGestureMessage(move ? '' : 'No hand detected')
 				},
 			})
 
@@ -89,6 +90,15 @@ function Home({ currentUser }) {
 			clearTimeout(countdownStartDelayRef.current)
 		}
 
+		if (!latestDetectedMoveRef.current) {
+			setUserGestureMessage('No hand detected')
+			setTopStatus('No hand detected')
+			setTimeout(() => {
+				setTopStatus('')
+			}, 1200)
+			return
+		}
+
 		const computerSelectedMove = getRandomMove()
 		setComputerMove(null)
 		setUserMove(null)
@@ -120,7 +130,7 @@ function Home({ currentUser }) {
 
 				if (!detectedUserMove) {
 					setResult(null)
-					setUserGestureMessage('No gesture detected')
+					setUserGestureMessage('No hand detected')
 					return
 				}
 
