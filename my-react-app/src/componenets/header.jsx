@@ -92,15 +92,41 @@ function Header({ theme, onToggleTheme, onLogout, currentUser }) {
               </button>
             </div>
 
-            <p className="docs-lead"><strong>No video is being recorded.</strong></p>
+            <p className="docs-lead">Welcome! Before you start playing, please take a moment to review these instructions for the best experience:</p>
+
+            <h3 className="docs-subtitle">📷 Camera &amp; Setup</h3>
             <ul className="docs-list">
-              <li>Please keep your hand clearly inside the frame to capture gestures properly.</li>
-              <li>Only Rock, Paper, and Scissors gestures are detected. Any other gesture can show as no hand detected.</li>
-              <li>First bring your hand into frame, then click Play. Otherwise it may show no hand detected.</li>
-              <li>Please allow camera permission when prompted, otherwise the game cannot start.</li>
-              <li>If Open Camera does not work on first click, try clicking it once again.</li>
+              <li>Ensure your camera permission is <strong>allowed</strong> when prompted. The game will not function without it.</li>
+              <li>If the camera does not start on the first attempt, click <strong>Open Camera</strong> again.</li>
             </ul>
-            <p className="docs-footnote">This app is currently in testing phase. We would love to hear about flaws so we can improve and fix them.</p>
+
+            <h3 className="docs-subtitle">✋ Hand Positioning</h3>
+            <ul className="docs-list">
+              <li>Keep your hand <strong>clearly visible within the frame</strong> at all times.</li>
+              <li>Make sure your hand is well-lit and not blurred for accurate gesture detection.</li>
+            </ul>
+
+            <h3 className="docs-subtitle">🪨📄✂️ Supported Gestures</h3>
+            <ul className="docs-list">
+              <li>The system recognizes only <strong>Rock</strong>, <strong>Paper</strong>, and <strong>Scissors</strong>.</li>
+              <li>Any other gesture may result in <strong>No Hand Detected</strong>.</li>
+            </ul>
+
+            <h3 className="docs-subtitle">▶️ Starting the Game</h3>
+            <ul className="docs-list">
+              <li>First, position your hand properly inside the frame.</li>
+              <li>Then click <strong>Play</strong> to begin.</li>
+              <li>Starting without showing your hand may cause detection issues.</li>
+            </ul>
+
+            <h3 className="docs-subtitle">⚠️ Notes &amp; Feedback</h3>
+            <ul className="docs-list">
+              <li>This application is currently in the <strong>testing phase</strong>.</li>
+              <li>Minor glitches or detection errors may occur.</li>
+              <li>Your feedback is valuable—please report any issues to help us improve the experience.</li>
+            </ul>
+
+            <p className="docs-footnote">✨ Tip: For best results, play in a well-lit environment with a plain background.</p>
           </div>
         </div>
       )}

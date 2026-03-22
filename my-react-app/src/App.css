@@ -245,6 +245,12 @@
   gap: 6px;
 }
 
+.docs-subtitle {
+  margin: 12px 0 6px;
+  font-size: 16px;
+  color: var(--text-h);
+}
+
 .docs-footnote {
   margin: 12px 0 0;
   color: var(--text-h);
