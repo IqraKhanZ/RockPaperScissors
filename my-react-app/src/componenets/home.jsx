@@ -113,6 +113,17 @@ function Home({ currentUser }) {
 
 			let current = 3
 			countdownIntervalRef.current = setInterval(() => {
+				if (!latestDetectedMoveRef.current) {
+					clearInterval(countdownIntervalRef.current)
+					countdownIntervalRef.current = null
+					setCountdown(null)
+					setComputerMove(null)
+					setUserMove(null)
+					setResult(null)
+					setUserGestureMessage('No hand detected')
+					return
+				}
+
 				current -= 1
 
 				if (current > 0) {
@@ -125,14 +136,17 @@ function Home({ currentUser }) {
 				setCountdown(null)
 
 				const detectedUserMove = latestDetectedMoveRef.current
-				setComputerMove(computerSelectedMove)
-				setUserMove(detectedUserMove)
 
 				if (!detectedUserMove) {
+					setComputerMove(null)
+					setUserMove(null)
 					setResult(null)
 					setUserGestureMessage('No hand detected')
 					return
 				}
+
+				setComputerMove(computerSelectedMove)
+				setUserMove(detectedUserMove)
 
 				const finalResult = determineWinner(detectedUserMove, computerSelectedMove)
 				setResult(finalResult)
