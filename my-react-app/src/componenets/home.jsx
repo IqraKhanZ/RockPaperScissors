@@ -60,8 +60,15 @@ function Home({ currentUser }) {
 			}, 900)
 		} catch (error) {
 			setIsCameraOpen(false)
-			setTopStatus('Camera permission denied')
-			console.error('Camera permission denied:', error)
+			const message = String(error?.message || '')
+			if (message.toLowerCase().includes('permission')) {
+				setTopStatus('Camera permission denied')
+			} else if (message.toLowerCase().includes('mediapipe')) {
+				setTopStatus('MediaPipe failed to load')
+			} else {
+				setTopStatus('Unable to start camera')
+			}
+			console.error('Camera initialization failed:', error)
 		}
 	}
 
