@@ -321,8 +321,8 @@
   position: relative;
   width: min(1100px, 100%);
   display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
   align-items: stretch;
   margin-top: 8px;
 }
@@ -384,6 +384,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
 }
 
 .move-box {
@@ -397,6 +398,7 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  min-width: 0;
   gap: 14px;
   background:
     linear-gradient(var(--panel-bg), var(--panel-bg)) padding-box,
@@ -511,6 +513,14 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--text-h);
+}
+
+@media (max-width: 1120px) {
+  .boxes-wrap {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+    margin-inline: auto;
+  }
 }
 
 .controls {
