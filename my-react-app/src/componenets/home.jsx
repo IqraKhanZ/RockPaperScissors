@@ -7,6 +7,19 @@ function formatMove(move) {
 	return move.charAt(0).toUpperCase() + move.slice(1)
 }
 
+function getStatusClass(topStatus, countdown) {
+	if (countdown !== null) return 'countdown-number'
+
+	const normalizedStatus = String(topStatus || '').toLowerCase()
+
+	if (!normalizedStatus) return 'status-info'
+	if (normalizedStatus.includes('denied') || normalizedStatus.includes('unable') || normalizedStatus.includes('failed')) return 'status-error'
+	if (normalizedStatus.includes('no hand')) return 'status-warning'
+	if (normalizedStatus.includes('opened') || normalizedStatus.includes('ready') || normalizedStatus.includes('closed')) return 'status-success'
+
+	return 'status-info'
+}
+
 function Home({ currentUser }) {
 	const webcamContainerRef = useRef(null)
 	const webcamStopRef = useRef(null)
@@ -195,12 +208,14 @@ function Home({ currentUser }) {
 			<div className="disclaimer-ticker" role="note" aria-live="polite">
 				<p className="disclaimer-track">
 					⚠️ Disclaimer: Please keep your hand clearly visible within the camera frame 🤚 and maintain a proper distance so your entire hand fits on the screen. This helps ensure your gesture is captured accurately 🎯.
+					<br />
+					🔒 No video is being recorded or stored, your camera feed is used only for real-time gesture detection.
 				</p>
 			</div>
 
 			<div className="boxes-wrap">
 				{(topStatus || countdown !== null) && (
-					<div className={`countdown-pill ${countdown !== null ? 'countdown-number' : topStatus === 'Camera Opened' ? 'camera-status' : topStatus === 'No hand detected' ? 'no-hand-status' : 'ready-status'}`}>
+					<div className={`countdown-pill ${getStatusClass(topStatus, countdown)}`}>
 						{countdown !== null ? countdown : topStatus}
 					</div>
 				)}
