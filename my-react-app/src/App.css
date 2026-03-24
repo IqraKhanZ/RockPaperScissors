@@ -321,11 +321,11 @@
 .boxes-wrap {
   position: relative;
   width: min(1100px, 100%);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
-  grid-auto-rows: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
-  align-items: start;
+  align-items: stretch;
   margin-top: 8px;
 }
 
@@ -386,6 +386,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1 1 460px;
+  max-width: 540px;
   min-width: 0;
   width: 100%;
 }
@@ -520,9 +522,14 @@
 
 @media (max-width: 1120px) {
   .boxes-wrap {
-    grid-template-columns: 1fr;
+    justify-content: center;
     max-width: 680px;
     margin-inline: auto;
+  }
+
+  .box-group {
+    flex-basis: 100%;
+    max-width: 680px;
   }
 }
 
@@ -938,17 +945,22 @@
   }
 
   .boxes-wrap {
-    grid-template-columns: 1fr;
     width: min(100%, 620px);
     gap: 8px;
     margin-top: 2px;
     margin-inline: auto;
   }
 
+  .box-group {
+    flex-basis: 100%;
+    max-width: none;
+  }
+
   .home-page {
     height: auto;
     min-height: 0;
-    overflow: visible;
+    overflow-x: hidden;
+    overflow-y: auto;
     justify-content: flex-start;
     gap: 10px;
     padding: 6px 10px 16px;
